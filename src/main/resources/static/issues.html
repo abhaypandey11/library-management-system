@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraryOS — Issue & Return</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">📚</div>
+            <div class="brand-text">
+                <span class="brand-name">LibraryOS</span>
+                <span class="brand-sub">Management System</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item"><span class="nav-icon">⬛</span><span>Dashboard</span></a>
+            <a href="books.html" class="nav-item"><span class="nav-icon">📖</span><span>Books</span></a>
+            <a href="members.html" class="nav-item"><span class="nav-icon">👥</span><span>Members</span></a>
+            <a href="issues.html" class="nav-item active"><span class="nav-icon">🔄</span><span>Issue & Return</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="status-dot"></div>
+            <span>Server Online</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Issue & Return</h1>
+                <p class="page-subtitle">Track book issuances and returns</p>
+            </div>
+            <div class="topbar-right">
+                <button class="btn btn-primary" onclick="openModal('issueBookModal')">+ Issue Book</button>
+            </div>
+        </header>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterByStatus('ALL', this)">All Records</button>
+            <button class="tab-btn" onclick="filterByStatus('ISSUED', this)">Currently Issued</button>
+            <button class="tab-btn" onclick="filterByStatus('RETURNED', this)">Returned</button>
+        </div>
+
+        <section class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">Issue Records</h2>
+                <span class="record-count" id="issueCount">0 records</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Book Title</th>
+                            <th>Member</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                            <th>Fine</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="issuesTableBody">
+                        <tr><td colspan="9" class="loading-row">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Issue Book Modal -->
+    <div class="modal-overlay" id="issueBookModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Issue Book to Member</h3>
+                <button class="modal-close" onclick="closeModal('issueBookModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="issueBookError" class="error-box" style="display:none"></div>
+                <div class="form-group">
+                    <label>Select Book *</label>
+                    <select id="issueBookId" class="form-input">
+                        <option value="">Loading books...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Select Member *</label>
+                    <select id="issueMemberId" class="form-input">
+                        <option value="">Loading members...</option>
+                    </select>
+                </div>
+                <div class="info-box">
+                    📅 Due date will be automatically set to <strong>14 days</strong> from today.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal('issueBookModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="issueBook()">Issue Book</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fine Detail Modal -->
+    <div class="modal-overlay" id="fineModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Return Book</h3>
+                <button class="modal-close" onclick="closeModal('fineModal')">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="fine-detail-card" id="fineDetailCard"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeModal('fineModal')">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmReturn()">Confirm Return</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="js/api.js"></script>
+    <script src="js/issues.js"></script>
+</body>
+</html>

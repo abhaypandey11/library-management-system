@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraryOS — Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">📚</div>
+            <div class="brand-text">
+                <span class="brand-name">LibraryOS</span>
+                <span class="brand-sub">Management System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">⬛</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="books.html" class="nav-item" data-page="books">
+                <span class="nav-icon">📖</span>
+                <span>Books</span>
+            </a>
+            <a href="members.html" class="nav-item" data-page="members">
+                <span class="nav-icon">👥</span>
+                <span>Members</span>
+            </a>
+            <a href="issues.html" class="nav-item" data-page="issues">
+                <span class="nav-icon">🔄</span>
+                <span>Issue & Return</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="status-dot"></div>
+            <span>Server Online</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Welcome back — here's your library overview</p>
+            </div>
+            <div class="topbar-right">
+                <div class="current-date" id="currentDate"></div>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="stats-grid">
+            <div class="stat-card stat-books">
+                <div class="stat-icon">📚</div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Books</span>
+                    <span class="stat-value" id="totalBooks">—</span>
+                </div>
+                <div class="stat-bg-text">BOOKS</div>
+            </div>
+            <div class="stat-card stat-members">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Members</span>
+                    <span class="stat-value" id="totalMembers">—</span>
+                </div>
+                <div class="stat-bg-text">MEMBERS</div>
+            </div>
+            <div class="stat-card stat-issued">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-info">
+                    <span class="stat-label">Books Issued</span>
+                    <span class="stat-value" id="totalIssued">—</span>
+                </div>
+                <div class="stat-bg-text">ISSUED</div>
+            </div>
+            <div class="stat-card stat-returned">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <span class="stat-label">Books Returned</span>
+                    <span class="stat-value" id="totalReturned">—</span>
+                </div>
+                <div class="stat-bg-text">RETURNED</div>
+            </div>
+        </section>
+
+        <!-- Recent Issues Table -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2 class="section-title">Recent Issue Records</h2>
+                <a href="issues.html" class="btn btn-outline">View All →</a>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Book Title</th>
+                            <th>Member</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Fine</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentIssuesBody">
+                        <tr><td colspan="7" class="loading-row">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

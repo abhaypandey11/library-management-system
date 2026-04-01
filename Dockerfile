@@ -9,6 +9,9 @@ COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
 
+# Fix permission issue
+RUN chmod +x mvnw
+
 # Copy source code
 COPY src src
 
@@ -18,3 +21,4 @@ RUN ./mvnw clean install -DskipTests
 # Run the jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "target/library-management.jar"]
+RUN chmod +x mvnw

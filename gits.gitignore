@@ -5,6 +5,6 @@ target/
 .project
 .settings/
 .idea/
-application.properties
 .DS_Store
 Thumbs.db
+application-prod.properties

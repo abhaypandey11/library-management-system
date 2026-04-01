@@ -118,6 +118,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>library-management</finalName>
 	</build>
 
 </project>

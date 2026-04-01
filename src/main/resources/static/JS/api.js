@@ -2,7 +2,7 @@
 //   LibraryOS — API Base Configuration
 // ============================================
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = 'https://library-management-bhqp.onrender.com/api';
 
 // ✅ Generic GET request
 async function apiGet(endpoint) {
